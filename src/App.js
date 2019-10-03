@@ -28,17 +28,26 @@ class App extends Component {
     };
 
     typeTask = (event) => {
-        this.setState({currentTask: event.target.value});
+        const message = event.target.value;
+        console.log(message);
+        this.setState({currentTask: message});
         this.setState({currentTaskTime: Date.now()});
     };
 
+    removeTask = (id) => {
+        const existingTasks = [...this.state.tasks];
+        const index = existingTasks.findIndex(item => id === item.id);
+        existingTasks.splice(index, 1);
+        this.setState({tasks: existingTasks});
+    };
+
     render() {
+        console.log(this.state);
         return (
             <div className="App">
                 <div>
                     <AddTaskForm/>
                 </div>
-
                 {
                     this.state.showTasks ?
                         <div>
@@ -47,10 +56,11 @@ class App extends Component {
                                     return (
                                         <Task
                                             image="img/ic_delete.png"
+                                            alt={"Delete"}
                                             text={task.text}
                                             click={(e) => this.addTask(e)}
                                             change={(e) => this.typeTask(e)}
-                                            // remove={() => this.removePerson(person.id)}
+                                            remove={() => this.removeTask(task.id)}
                                         >
                                         </Task>
                                     );

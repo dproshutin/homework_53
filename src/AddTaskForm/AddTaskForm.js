@@ -9,7 +9,7 @@ const AddTaskForm = props => {
                 value={props.currentTask}
                 onChange = {props.change}
             />
-            <button>Add</button>
+            <button type="submit">Add</button>
         </form>
     );
 };

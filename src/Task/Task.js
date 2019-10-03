@@ -4,7 +4,7 @@ const Task = props => {
     return (
         <div className="Task">
             <p>{props.text}</p>
-            <img src={props.image} width="50px" height="50px"/>
+            <img onClick={props.remove} src={props.image} width="50px" height="50px" alt={props.alt}/>
         </div>
     );
 };
