@@ -2,6 +2,24 @@
   text-align: center;
 }
 
+* {
+  box-sizing: border-box;
+}
+
+.AddTaskForm {
+  display: flex;
+  justify-content: space-between;
+  width: 50%;
+  margin: 30px auto 0;
+}
+.AddTaskForm input {
+  width: 80%;
+}
+
+.AddTaskForm button {
+  width: 15%;
+}
+
 .Task {
   display: flex;
   width: 50%;
