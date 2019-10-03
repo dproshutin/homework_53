@@ -10,28 +10,24 @@ class App extends Component {
             {text: "Walk with dog", id: 1570041880519},
             {text: "Do homework", id: 1570041920486}
         ],
-        currentTask: null,
-        currentTaskTime: null,
+        currentTask: "",
         showTasks: true
     };
 
-    addTask = (e) => {
-        e.defaultPrevented();
-        const existingTasks = [...this.state.tasks];
-        // const id = Date.now();
-        const newTask = {text: this.state.currentTask, id: this.state.currentTime};
-        console.log("Hello");
-        existingTasks.push(newTask);
-
-        this.setState({tasks: existingTasks});
-        console.log(this.state);
+    addTask = (event) => {
+        event.preventDefault();
+        const tasks = [...this.state.tasks];
+        const id = Date.now();
+        const newTask = {text: this.state.currentTask, id: id};
+        tasks.push(newTask);
+        this.setState({tasks});
     };
 
     typeTask = (event) => {
-        const message = event.target.value;
-        console.log(message);
-        this.setState({currentTask: message});
-        this.setState({currentTaskTime: Date.now()});
+        let currentTask = [...this.state.currentTask];
+        currentTask = event.target.value;
+        this.setState({currentTask});
+
     };
 
     removeTask = (id) => {
@@ -46,7 +42,11 @@ class App extends Component {
         return (
             <div className="App">
                 <div>
-                    <AddTaskForm/>
+                    <AddTaskForm
+                        value={this.state.currentTask}
+                        click={(e) => this.addTask(e)}
+                        change={(e) => this.typeTask(e)}
+                    />
                 </div>
                 {
                     this.state.showTasks ?
@@ -55,11 +55,10 @@ class App extends Component {
                                 this.state.tasks.map((task) => {
                                     return (
                                         <Task
+                                            key={task.id}
                                             image="img/ic_delete.png"
                                             alt={"Delete"}
                                             text={task.text}
-                                            click={(e) => this.addTask(e)}
-                                            change={(e) => this.typeTask(e)}
                                             remove={() => this.removeTask(task.id)}
                                         >
                                         </Task>
@@ -67,7 +66,6 @@ class App extends Component {
                                 })
                             }
                         </div> : null
-
                 }
 
             </div>
