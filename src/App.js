@@ -27,18 +27,16 @@ class App extends Component {
         let currentTask = [...this.state.currentTask];
         currentTask = event.target.value;
         this.setState({currentTask});
-
     };
 
     removeTask = (id) => {
-        const existingTasks = [...this.state.tasks];
-        const index = existingTasks.findIndex(item => id === item.id);
-        existingTasks.splice(index, 1);
-        this.setState({tasks: existingTasks});
+        const tasks = [...this.state.tasks];
+        const index = tasks.findIndex(item => id === item.id);
+        tasks.splice(index, 1);
+        this.setState({tasks});
     };
 
     render() {
-        console.log(this.state);
         return (
             <div className="App">
                 <div>
