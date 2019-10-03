@@ -22,9 +22,13 @@
 
 .Task {
   display: flex;
+  justify-content: space-between;
+  align-items: center;
   width: 50%;
   margin: 30px auto;
   padding: 5px;
-  justify-content: space-between;
   border: 1px solid #000;
+}
+.Task p {
+  text-align: left;
 }
