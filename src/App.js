@@ -43,6 +43,7 @@ class App extends Component {
                                 this.state.tasks.map((task) => {
                                     return (
                                         <Task
+                                            image="img/ic_delete.png"
                                             text={task.text}
                                             click={() => this.addTask()}
                                             change={(e) => this.typeTask(e)}
